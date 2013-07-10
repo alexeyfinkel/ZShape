@@ -1,0 +1,18 @@
+<flags   EDM_PLUGIN="1"/>
+<use   name="FWCore/Framework"/>
+<use   name="FWCore/PluginManager"/>
+<use   name="FWCore/ParameterSet"/>
+<use   name="DataFormats/PatCandidates"/>
+<use   name="SimDataFormats/GeneratorProducts"/>
+<use   name="FastSimulation/Particle"/>
+<use   name="ZShape/Base"/>
+<use   name="ZShape/EffAcc"/>
+<use   name="root"/>
+<use   name="roofit"/>
+<use   name="DataFormats/RecoCandidate"/>
+<use   name="DataFormats/L1GlobalCaloTrigger"/>
+<use   name="DataFormats/L1Trigger"/>
+<use   name="HLTrigger/JetMET"/>
+<export>
+  <lib   name="1"/>
+</export>

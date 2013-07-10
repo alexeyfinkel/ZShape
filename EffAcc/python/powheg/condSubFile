@@ -1,0 +1,15 @@
+Universe             = vanilla
+Executable           = /local/cms/other/powheg/powheg-box-svn38/pwhg_main_Z
+Requirements = Memory > 400 && Arch=="X86_64" && (Machine != "zebra04.spa.umn.edu")
+WhenToTransferOutput = On_Exit
+should_transfer_files = YES
+
+
+
+InitialDir           = /local/cms/users/pastika/powheg
+Arguments            = powheg.input
+Transfer_Input_Files = powheg.input
+output               = log/cfg.out
+error                = log/cfg.err
+Log                  = log/cfg.log
+Queue                = long

@@ -1,0 +1,4 @@
+bah
+bah
+bah
+=ZShape.EffAcc.FullSimSmearedElectronProducer_cfi.FullSimSmearedElectronsProducer.clone()

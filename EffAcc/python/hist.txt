@@ -1,0 +1,1000 @@
+   26  pd3;sb;pop
+   27  cmsRun TestMyEta_cfg.py
+   28  pd3;sb;pop
+   29  cmsRun TestMyEta_cfg.py
+   30  .q
+   31  pd3;sb;pop
+   32  pd3;sb;pop
+   33  cmsRun TestMyEta_cfg.py
+   34  root testMyEta.root 
+   35  hgrep file
+   36  condor_filelist.perl --batch 40 TestMyEta_cfg.py ~/Feb2021_fullSim_zee.list
+   37  bash
+   38  cw
+   39  cd scans/
+   40  lrt
+   41  cd HF_constant_Apr13_1710/
+   42  ll
+   43  dateHadd.sh HF_constant_Apr13_1710_0*root
+   44  cd /local/cms/user/gude/30Nov2011-v1_SingleEHLT_skim/
+   45  ll
+   46  root 30Nov2011-v1_SingleEHLT_skim_038.root
+   47  cw
+   48  lrt
+   49  cd HFEMID_UNCOR_tests/
+   50  lrt
+   51  dh HFEMID_UNCOR_tests_0*root
+   52  bash
+   53  hgrep pro
+   54  cd 
+   55  hgrep project
+   56  wcq
+   57  condor_rm 608
+   58  wcq
+   59  top
+   60  cd
+   61  scram project -help
+   62  scram project -n BSSW_4_2_7 CMSSW CMSSW_4_2_7
+   63  lrt
+   64  cd BSSW_4_2_7/src/
+   65  ls
+   66  cp -r ~/CMSSW_4_2_7_hfemidVal/src/* .
+   67  lrt
+   68  sb
+   69  cmsenv
+   70  sb
+   71  em RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc&
+   72  em mywork/HFEMIDZeeAnalyzer/src/HFIDGenAnalHistos.cc&
+   73  sb
+   74  sb
+   75  sb
+   76  sb
+   77  sb
+   78  sb
+   79  sb
+   80  cd mywork/HFEMIDZeeAnalyzer/test/
+   81  condor_filelist.perl --batch 40 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list 
+   82  cmsRun EtaButchering_cfg.py 
+   83  root testMyEta.root 
+   84  pd3;sb;pop
+   85  pd3;sb;pop
+   86  pd3;sb;pop
+   87  pd3;sb;pop
+   88  condor_filelist.perl --batch 40 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list 
+   89  em ../../src/HFIDGenAnalHistos.cc
+   90  em ../../src/HFIDGenAnalHistos.cc
+   91  lrt
+   92  em FullSimSmearedElectronProducer_cfi.py
+   93  cd ..
+   94  lrt
+   95  lrt effacc_FS_smearingon
+   96  lrt
+   97  cd TestMyEta
+   98  lrt
+   99  dh TestMyEta_0*root
+  100  cd ..
+  101  lrt
+  102  cd Kevz_zee_fullsim
+  103  lrt
+  104  em cfg/Kevz_zee_fullsim_001_cfg.py 
+  105  em cfg/Kevz_zee_fullsim_001_cfg.py 
+  106  cd ..
+  107  cd powhegZ/base/
+  108  ls
+  109  cd Kevin_parp0_001_cfi/cfg/
+  110  ls
+  111  em pythia_set-0_cfg.py&
+  112  cd ../../../..
+  113  lrt
+  114  em effacc_makeSmearEvents/
+  115  cd effacc_makeSmearEvents/
+  116  lrt
+  117  em cfg/effacc_makeSmearEvents_001_cfg.py 
+  118  lrt
+  119  ls log/
+  120  less effacc_makeSmearEvents_000.err.gz
+  121  cd log/
+  122  less effacc_makeSmearEvents_000.err.gz 
+  123  em ../cfg/effacc_makeSmearEvents_000_cfg.py &
+  124  less effacc_makeSmearEvents_000.err.gz 
+  125  cd ..
+  126  lrt
+  127  cd log/
+  128  less effacc_makeSmearEvents_000.err.gz 
+  129  less effacc_makeSmearEvents_000.err.gz 
+  130  ffind.sh py outpath
+  131  cmsenv
+  132  em ../../ZFromData/data/Kevz_zee_fullsim_cfg.py&
+  133  lrt
+  134  lrt ../../ZFromData/data/
+  135  em ZEfficiencyKevin_cfi.py&
+  136  em ../src/EffHistos.cc&
+  137  condor_userprio
+  138  cq -global
+  139  cp effacc_FS_smearingon_cfg.py effacc_makeSmearEvents_cfg.py; em effacc_makeSmearEvents_cfg.py&
+  140  lrt
+  141  condor_filelist.perl --help
+  142  condor_filelist.perl --nosubmit effacc_makeSmearEvents_cfg.py ~/Feb2021_fullSim_zee.list 
+  143  pd3;sb;pop
+  144  cd ../..
+  145  lrt
+  146  mv MakeZEffTree ~/
+  147  lrt
+  148  cd EffAcc/python/
+  149  pd3;sb;pop
+  150  condor_filelist.perl --batch 15 effacc_makeSmearEvents_cfg.py ~/Feb2021_fullSim_zee.list 
+  151  condor_rm 614
+  152  pd3;sb;pop
+  153  condor_filelist.perl --batch 15 effacc_makeSmearEvents_cfg.py ~/Feb2021_fullSim_zee.list 
+  154  pd3;sb;pop
+  155  condor_filelist.perl --batch 15 effacc_makeSmearEvents_cfg.py ~/Feb2021_fullSim_zee.list 
+  156  python effacc_makeSmearEvents_cfg.py
+  157  python effacc_makeSmearEvents_cfg.py
+  158  pytwcq
+  159  ffind.sh list Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/00F71C3D-88A8-E011-AC48-001D0967D0DA.root
+  160  cat *list | grep Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/00F71C3D-88A8-E011-AC48-001D0967D0DA.root
+  161  lrt *list
+  162  lrt Feb2021_fullSim_zee.list | grep Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/00F71C3D-88A8-E011-AC48-001D0967D0DA.root
+  163  lrt Feb2021_fullSim_zee.list | grep Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/00F71C3D-88A8-E011-AC48-001D0967D0DA.root
+  164  em *list
+  165  wcq
+  166  wcq
+  167  wcq
+  168  wcq
+  169  wcq
+  170  condor_rm 611
+  171  wcq
+  172  wcq
+  173  wcq
+  174  cmsenv 
+  175  em ../src/HFIDGenAnalHistos.cc&
+  176  em EtaButchering_cfg.py &
+  177  ls data/
+  178  root data/EtaButchering/Apr25_EtaButchering_0915.root 
+  179  sb
+  180  pd3;sb;pop
+  181  pd3;sb;pop
+  182  condor_filelist.perl --batch 40 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list 
+  183  root data/EtaButchering/Apr25_EtaButchering_1155.root 
+  184  root data/EtaButchering/Apr25_EtaButchering_1155.root 
+  185  pd3;sb;pop
+  186  pd3;sb;pop
+  187  pd3;sb;pop
+  188  pd3;sb;pop
+  189  pd3;sb;pop
+  190  pd3;sb;pop
+  191  condor_filelist.perl --batch 20 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list 
+  192  root data/EtaButchering/Apr25_EtaButchering_1155.root 
+  193  pd3;sb;pop
+  194  pd3;sb;pop
+  195  pd3;sb;pop
+  196  condor_filelist.perl --batch 10 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list 
+  197  condor_rm 612
+  198  pd3;sb;pop
+  199  pd3;sb;pop
+  200  condor_filelist.perl --batch 15 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list 
+  201  pd3;sb;pop
+  202  cmsRun EtaButchering_cfg.py 
+  203  pd3;sb;pop
+  204  cmsRun EtaButchering_cfg.py 
+  205  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  206  pd3;sb;pop
+  207  pd3;sb;pop
+  208  pd3;sb;pop
+  209  cmsRun EtaButchering_cfg.py > ~/public_html/butcherNEW.log
+  210  cmsenv 
+  211  hgrep source
+  212  source /local/cms/sw/cmsset_CMSSW5X.sh
+  213  cmsenv 
+  214  em 
+  215  cmsenv
+  216  ensc ../../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc
+  217  root data/EtaButchering/Apr25_EtaButchering_1459.root 
+  218  root data/EtaButchering/Apr25_EtaButchering_1459.root 
+  219  root data/EtaButchering/Apr26_EtaButchering_0945.root 
+  220  lrt
+  221  cd EtaButchering/
+  222  lrt
+  223  dh EtaButchering_0*root
+  224  lrt
+  225  dh EtaButchering_0*root
+  226  lrt
+  227  dh EtaButchering_0*root
+  228  lrt
+  229  dh EtaButchering_0*root
+  230  cd log
+  231  em EtaButchering_000.*&
+  232  zcat *log.gz | bigger
+  233  zcat *log.gz | grep bigger
+  234  zcat *log.gz | grep bigger | wc
+  235  cmsenv
+  236  em
+  237  top
+  238  cw
+  239  lrt
+  240  cd scans/
+  241  lrt
+  242  cd HF_resphi_Apr13_1801
+  243  ll
+  244  dateHadd.sh HF_resphi_Apr13_1801_0*root
+  245  cd ../HF_reseta_Apr13_1802/
+  246  ll
+  247  dateHadd.sh HF_reseta_Apr13_1802_0*root
+  248  cd ..
+  249  lrt
+  250  lrt
+  251  lrt
+  252  cd ..
+  253  lrt
+  254  cd HF_reseta_Apr14_1225/
+  255  ll
+  256  dateHadd.sh HF_reseta_Apr14_1225_0*root
+  257  cd ../HF_resphi_Apr14_1227/
+  258  ll
+  259  dateHadd.sh HF_resphi_Apr14_1227_0*root
+  260  vncserver -kill :7
+  261  exit
+  262  top
+  263  exit
+  264  bash
+  265  hgrep geo
+  266  ls *vnc*
+  267  hgrep vnc
+  268  vncserver :7
+  269  cd public_html/cmsdoc/PHD/trunk/
+  270  lrt
+  271  em HFelectrons.tex&
+  272  ls figs/
+  273  em ../../DN-11-000/trunk/DN-11-000.tex&
+  274  em effacc_FS_smearingon_cfg.py &
+  275  pd3;sb;pop
+  276  hgrep smearingon
+  277  condor_filelist.perl --batch 40 effacc_FS_smearingon_cfg.py ~/Feb2021_fullSim_zee.list
+  278  cmsenv
+  279  condor_filelist.perl --batch 40 effacc_FS_smearingon_cfg.py ~/Feb2021_fullSim_zee.list
+  280  condor_filelist.perl --batch 40 effacc_FS_smearingon_cfg.py ~/Feb2021_fullSim_zee.list
+  281  cd ../scripts/
+  282  lrt
+  283  cd note/
+  284  ls
+  285  hgrep data
+  286  hgrep ln
+  287  lndata
+  288  ls
+  289  em note_meanEtaRes.C&
+  290  root data/HFEMID_UNCOR_tests/May04_HFEMID_UNCOR_tests_0930.root data/HFEMID_tests/May04_HFEMID_tests_0929.root 
+  291  root data/HFEMID_UNCOR_tests/May04_HFEMID_UNCOR_tests_0930.root 
+  292  root data/HFEMID_UNCOR_tests/May04_HFEMID_UNCOR_tests_1158.root 
+  293  lrt
+  294  cd ..
+  295  lrt
+  296  wcq
+  297  condor_rm 617
+  298  cq
+  299  cq
+  300  wcq
+  301  wcq
+  302  wcq
+  303  wcq
+  304  wcq
+  305  em ../../src/HFIDGenAnalyzer.cc
+  306  em ~/CMSSW_4_1_8/src/mywork/HFEMIDZeeAnalyzer/src/HFIDGenAnalyzer.cc
+  307  em ~/CMSSW_4_2_7_hfemidVal/src/RecoEgamma/EgammaHFProducers/src/HFRecoEcalCandidateAlgo.cc
+  308  em ../../src/HFIDGenAnalHistos.cc&
+  309  hgrep data
+  310  root data/EtaButchering/Apr26_EtaButchering_0945.root
+  311  cd ../../..
+  312  cd ..
+  313  cd RecoEgamma/EgammaHFProducers/src/
+  314  em HFClusterAlgo.cc&
+  315  pd ~/CMSSW_4_2_7_hfemidVal/src/mywork/HFEMIDZeeAnalyzer/test/
+  316  lrt
+  317  em TestMyEta_cfg.py
+  318  em HFEMID_UNCOR_tests_cfg.py
+  319  less ~/Feb2021_fullSim_zee.list 
+  320  lrt /local/cms/phedex/store/mc/Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/02E6BF8C-09A8-E011-AE29-00A0D1EE8D6C.root
+  321  lrt /hdfs/cms/phedex/store/mc/Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/02E6BF8C-09A8-E011-AE29-00A0D1EE8D6C.root
+  322  root data/vfo*/May*root
+  323  root data/vfo*/May*root
+  324  cd ../../..
+  325  cd RecoEgamma/EgammaHFProducers/src/
+  326  em HFClusterAlgo.cc&
+  327  pd3;sb;pop
+  328  cd ../../..
+  329  cd mywork/HFEMIDZeeAnalyzer/
+  330  em src/HFIDGenAnalHistos.cc&
+  331  cd test/
+  332  lrt
+  333  condor_filelist.perl --batch 40 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list ;condor_filelist.perl --batch 40 HFEMID_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  334  cmsenv
+  335  pd3;sb;pop
+  336  condor_filelist.perl --batch 40 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list ;condor_filelist.perl --batch 40 HFEMID_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  337  pd3;sb;pop
+  338  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  339  pd3;sb;pop
+  340  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  341  pd3;sb;pop
+  342  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  343  lrt
+  344  cd note/
+  345  root data/HFEMID_UNCOR_tests/May07_HFEMID_UNCOR_tests_1108.root 
+  346  cd ..
+  347  cd ../../../RecoEgamma/EgammaHFProducers/
+  348  em plugins/HLTHFRecoEcalCandidateProducer.*& 
+  349  em plugins/HFRecoEcalCandidateProducer.*&
+  350  cd plugins/
+  351  lrt
+  352  rmt
+  353  ls
+  354  em plugins/HFRecoEcalCandidateProducer.*&
+  355  cd ..
+  356  em plugins/HFRecoEcalCandidateProducer.*&
+  357  em python/HLTHFRecoEcalCandidate_cfi.py python/hfRecoEcalCandidate_cfi.py&
+  358  cvs diff src/HFClusterAlgo.cc
+  359  cd test
+  360  pd3;sb;pop
+  361  pd3;sb;pop
+  362  pd3;sb;pop
+  363  pd3;sb;pop
+  364  pd3;sb;pop
+  365  pd3;sb;pop
+  366  pd3;sb;pop
+  367  pd3;sb;pop
+  368  pd3;sb;pop
+  369  cd ..
+  370  lrt *
+  371  cd plugins/
+  372  rmt
+  373  cd ..
+  374  lrt *
+  375  cd python;rmt;cd ../src;rmt
+  376  lrt *
+  377  cd ..
+  378  lrt *
+  379  cd interface/;rmt;cd ..
+  380  lrt
+  381  lrt *
+  382  ls plugins/*HFR*
+  383  lrt plugins/*HFR*
+  384  em src/HFClusterAlgo.cc &
+  385  cp plugins/*HFR* ~/CMSSW_5_2_2/src/RecoEgamma/EgammaHFProducers/plugins/
+  386  lrt python/*HFR*
+  387  lrt python/[Hh]*R*pc
+  388  lrt python/[Hh]*R*py
+  389  cp python/[Hh]*R*py ~/CMSSW_5_2_2/src/RecoEgamma/EgammaHFProducers/python/
+  390  pop
+  391  pd3;sb;pop
+  392  cd ../../../mywork/HFEMIDZeeAnalyzer/test/
+  393  pd3;sb;pop
+  394  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  395  cat note/note_*C | grep Print
+  396  cat note/note_*C | grep Print
+  397  cd note
+  398  lrt
+  399  rmt
+  400  lrt
+  401  em note_primecut.C&
+  402  em note_*C&
+  403  em note_deltaPhi.C
+  404  cd ..
+  405  lrt
+  406  em ../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc &
+  407  lrt
+  408  cd EtaButchering/
+  409  lrt
+  410  ll
+  411  ll EtaButchering_0[01]*root EtaButchering_02[01234]*root
+  412  dh EtaButchering_0[01]*root EtaButchering_02[01234]*root
+  413  lrt
+  414  rm EtaButchering_0*root
+  415  lrt
+  416  ll
+  417  dh EtaButchering_0*root
+  418  lrt
+  419  dh EtaButchering_0*root
+  420  ll
+  421  dh EtaButchering_0*root
+  422  lrt
+  423  lrt
+  424  dh EtaButchering_0*rootdh EtaButchering_0*root
+  425  lrt
+  426  rm May02_EtaButchering_0\*rootdh_1130.root 
+  427  dh EtaButchering_0*root
+  428  cd log/
+  429  ll
+  430  em EtaButchering_066.err.gz
+  431  lrt
+  432  em EtaButchering_0*err.gz
+  433  ll
+  434  cd ..
+  435  dh EtaButchering_0*root
+  436  lrt log
+  437  em EtaButchering_037.err.gz
+  438  em log/EtaButchering_037.err.gz
+  439  lrt log
+  440  em log/EtaButchering_037.err.gz
+  441  ll
+  442  cd ..
+  443  lrt
+  444  cd vfoff_EtaButchering/
+  445  ll
+  446  dh vfoff_EtaButchering_0*root;cd ../vfon_EtaButchering/;dh vfon_Et*root
+  447  cq -global
+  448  cq
+  449  condor_status | grep slot8@sc
+  450  condor_status | grep slot8@sc | wc
+  451  ping scorpions3
+  452  ping scorpion3
+  453  ping scorpion23
+  454  ssh scorpion23
+  455  condor_status | grep slot8@sc | wc
+  456  condor_status | grep slot8@sc 
+  457  condor_status | grep slot1@sc 
+  458  condor_status | grep slot4@sc 
+  459  condor_status | grep slot7@sc 
+  460  condor_status | grep slot9@sc 
+  461  condor_status | grep scor
+  462  condor_status | grep scor | wc
+  463  condor_status | grep scorp | wc
+  464  cq
+  465  cq
+  466  cq
+  467  cq
+  468  cw
+  469  cd EtaButchering/
+  470  lrt
+  471  root EtaButchering_025.root
+  472  lrt
+  473  dh EtaButchering_*root
+  474  lrt
+  475  root May03_EtaButchering_1640.root 
+  476  lrt
+  477  rm May03_EtaButchering_1640.root 
+  478  dh EtaButchering_*root
+  479  lrt
+  480  less ~/Feb2021_fullSim_zee.list
+  481  em src/HFClusterAlgo.cc &
+  482  cmsenv
+  483  hgrep source
+  484  source /local/cms/sw/cmsset_CMSSW5X.sh
+  485  cmsenv
+  486  sb
+  487  em src/HFClusterAlgo.cc &
+  488  em src/HFClusterAlgo.cc &
+  489  sb
+  490  sb
+  491  cvs diff
+  492  pd ../..;sb;pop
+  493  cvs commit
+  494  cmsenv
+  495  em ../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc &
+  496  pd3;sb;pop
+  497  hgre cmsRun
+  498  hgrep cmsRun
+  499  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  500  pd3;sb;pop
+  501  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  502  pd3;sb;pop
+  503  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  504  pd3;sb;pop
+  505  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  506  pd3;sb;pop
+  507  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  508  pd3;sb;pop
+  509  em ../src/HFIDGenAnalyzer.cc&
+  510  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  511  em EtaButchering_cfg.py &
+  512  pd3;sb;pop
+  513  pd3;sb;pop
+  514  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  515  hgrep but
+  516  hgrep file
+  517  condor_filelist.perl --batch 40 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list
+  518  pd3;sb;pop
+  519  pd3;sb;pop
+  520  pd3;sb;pop
+  521  pd3;sb;pop
+  522  pd3;sb;pop
+  523  pd3;sb;pop
+  524  pd3;sb;pop
+  525  pd3;sb;pop
+  526  pd3;sb;pop
+  527  pd3;sb;pop
+  528  pd3;sb;pop
+  529  pd3;sb;pop
+  530  pd3;sb;pop
+  531  pd3;sb;pop
+  532  pd3;sb;pop
+  533  pd3;sb;pop
+  534  pd3;sb;pop
+  535  pd3;sb;pop
+  536  pd3;sb;pop
+  537  pd3;sb;pop
+  538  em ../src/HFIDGenAnalyzer.cc&
+  539  pd3;sb;pop
+  540  pd3;sb;pop
+  541  pd3;sb;pop
+  542  pd3;sb;pop
+  543  pd3;sb;pop
+  544  pd3;sb;pop
+  545  pd3;sb;pop
+  546  pd3;sb;pop
+  547  pd3;sb;pop
+  548  pd3;sb;pop
+  549  pd3;sb;pop
+  550  pd3;sb;pop
+  551  pd3;sb;pop
+  552  pd3;sb;pop
+  553  hgrep cond
+  554  hgrep cms
+  555  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  556  pd3;sb;pop
+  557  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  558  pd3;sb;pop
+  559  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  560  pd3;sb;pop
+  561  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  562  pd3;sb;pop
+  563  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  564  root testMyEta.root 
+  565  pd3;sb;pop
+  566  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  567  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  568  pd3;sb;pop
+  569  pd3;sb;pop
+  570  cmsRun EtaButchering_cfg.py
+  571  pd3;sb;pop
+  572  cmsRun EtaButchering_cfg.py
+  573  pd3;sb;pop
+  574  cmsRun EtaButchering_cfg.py
+  575  cmsRun EtaButchering_cfg.py
+  576  pd3;sb;pop
+  577  cmsRun EtaButchering_cfg.py
+  578  root testMyEta.root 
+  579  ensc ../src/HFIDGenAnal*.??
+  580  ensc ../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc
+  581  cvs diff ../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc
+  582  em ../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc&
+  583  em EtaButchering_cfg.py&
+  584  cmsenv
+  585  pd3;sb;pop
+  586  pd3;sb;pop
+  587  pd3;sb;pop
+  588  cmsRun EtaButchering_cfg.py
+  589  pd3;sb;pop
+  590  root testMyEta.root 
+  591  cmsRun EtaButchering_cfg.py
+  592  cmsRun EtaButchering_cfg.py
+  593  pd3;sb;pop
+  594  pd3;sb;pop
+  595  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  596  root testMyEta.root 
+  597  pd3;sb;pop
+  598  pd3;sb;pop
+  599  em ../src/HFIDGenAnalHistos.hh
+  600  bg
+  601  pd3;sb;pop
+  602  pd3;sb;pop
+  603  pd3;sb;pop
+  604  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  605  pd3;sb;pop
+  606  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  607  pd3;sb;pop
+  608  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  609  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  610  pd3;sb;pop
+  611  pd3;sb;pop
+  612  pd3;sb;pop
+  613  pd3;sb;pop
+  614  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  615  pd3;sb;pop
+  616  em ../src/HFIDGenAnalHistos.cc&
+  617  pd3;sb;pop
+  618  hgrep condor
+  619  condor_filelist.perl --batch 15 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list
+  620  root testMyEta.root 
+  621  condor_rm 620
+  622  pd3;sb;pop
+  623  pd3;sb;pop
+  624  condor_filelist.perl --batch 15 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list
+  625  root data/EtaButchering/Apr30_EtaButchering_1825.root 
+  626  pd3;sb;pop
+  627  pd3;sb;pop
+  628  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  629  root testMyEta.root 
+  630  pd3;sb;pop
+  631  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  632  pd3;sb;pop
+  633  cmsRun EtaButchering_cfg.py > ~/public_html/butcher.log
+  634  root testMyEta.root 
+  635  pd3;sb;pop
+  636  condor_filelist.perl --batch 15 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list
+  637  root data/EtaButchering/Apr30_EtaButchering_1825.root 
+  638  condor_rm 622
+  639  pd3;sb;pop
+  640  condor_filelist.perl --batch 15 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list
+  641  cq | wc
+  642  cq 
+  643  cq | wc
+  644  root data/EtaButchering/May01_EtaButchering_0950.root 
+  645  ensc ../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc
+  646  em ../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc&
+  647  pd3;sb;pop
+  648  pd3;sb;pop
+  649  pd3;sb;pop
+  650  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  651  pd3;sb;pop
+  652  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  653  pd3;sb;pop
+  654  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  655  pd3;sb;pop
+  656  pd3;sb;pop
+  657  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  658  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  659  pd3;sb;pop
+  660  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  661  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  662  pd3;sb;pop
+  663  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  664  pd3;sb;pop
+  665  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  666  pd3;sb;pop
+  667  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  668  pd3;sb;pop
+  669  cmsRun EtaButchering_cfg.py > ~/public_html/butcherSeed.log
+  670  pd3;sb;pop
+  671  pd3;sb;pop
+  672  cmsRun EtaButchering_cfg.py > ~/public_;pop
+  673  pd3;sb;pop
+  674  python vfoff_EtaButchering_cfg.py
+  675  python vfon_EtaButchering_cfg.py
+  676  pd3;sb;pop
+  677  condor_filelist.perl --batch 15 vfoff_EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list
+  678  condor_filelist.perl --batch 15 vfon_EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list
+  679  root data/vfo*/May*root
+  680  pd3;sb;pop
+  681  root data/EtaButchering/Apr30_EtaButchering_1825.root 
+  682  condor_filelist.perl --batch 15 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list
+  683  pd3;sb;pop
+  684  condor_filelist.perl --batch 5 EtaButchering_cfg.py ~/Feb2021_fullSim_zee.list
+  685  em ../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc&
+  686  root data/EtaButchering/May03_EtaButchering_1700.root 
+  687  root data/EtaButchering/May03_EtaButchering_1700.root 
+  688  cq
+  689  top
+  690  cq
+  691  cd ~/CMSSW_4_2_7_clean/src/ZShape/EffAcc/scripts
+  692  cmsenv
+  693  cd ~/CMSSW_4_2_7_hfemidVal/src/mywork/HFEMIDZeeAnalyzer/test/note
+  694  cmsenv
+  695  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1023.root 
+  696  cd ~/CMSSW_4_2_7_clean/src/ZShape/EffAcc/scripts
+  697  cmsenv
+  698  cd ~/CMSSW_4_2_7_hfemidVal/src/mywork/HFEMIDZeeAnalyzer/test/note
+  699  cmsenv
+  700  root data/HFEMID_UNCOR_tests/May07_HFEMID_UNCOR_tests_1108.root 
+  701  root data/HFEMID_UNCOR_tests/May07_HFEMID_UNCOR_tests_1108.root 
+  702  ~/CMSSW_4_2_7_hfemidVal/src/mywork/HFEMIDZeeAnalyzer/test/note
+  703  cd ~/CMSSW_4_2_7_hfemidVal/src/mywork/HFEMIDZeeAnalyzer/test/note
+  704  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1023.root 
+  705  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1023.root 
+  706  root data/HFEMID_UNCOR_tests/May08_HFEMID_UNCOR_tests_1152.root 
+  707  root data/HFEMID_UNCOR_tests/May04_HFEMID_UNCOR_tests_1158.root 
+  708  root data/HFEMID_UNCOR_tests/May04_HFEMID_UNCOR_tests_1158.root 
+  709  root data/HFEMID_UNCOR_tests/May07_HFEMID_UNCOR_tests_1108.root 
+  710  less ~/Feb2021_fullSim_zee.list 
+  711  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1440.root 
+  712  root data/HFEMID_UNCOR_tests/May12_HFEMID_UNCOR_tests_1802.root 
+  713  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1023.root 
+  714  root data/HFEMID_UNCOR_tests/May12_HFEMID_UNCOR_tests_1802.root 
+  715  root data/HFEMID_UNCOR_tests/May14_HFEMID_UNCOR_tests_1533.root 
+  716  root data/HFEMID_UNCOR_tests/May14_HFEMID_UNCOR_tests_1533.root 
+  717  root data/HFEMID_UNCOR_tests/May14_HFEMID_UNCOR_tests_2129.root 
+  718  root data/HFEMID_UNCOR_tests/May15_HFEMID_UNCOR_tests_1029.root 
+  719  lrt
+  720  em note_project.C&
+  721  root data/HFEMID_UNCOR_tests/May15_HFEMID_UNCOR_tests_1029.root 
+  722  root data/HFEMID_UNCOR_tests/May15_HFEMID_UNCOR_tests_1029.root 
+  723  root data/HFEMID_UNCOR_tests/May15_HFEMID_UNCOR_tests_1029.root 
+  724  root data/HFEMID_UNCOR_tests/May15_HFEMID_UNCOR_tests_1029.root 
+  725  root data/HFEMID_UNCOR_tests/May15_HFEMID_UNCOR_tests_1029.root 
+  726  root data/HFEMID_UNCOR_tests/May15_HFEMID_UNCOR_tests_1029.root 
+  727  root data/Faster_uncor/May15_Faster_uncor_1427.root 
+  728  em note_project.C&
+  729  root data/Faster_uncor/May15_Faster_uncor_1506.root 
+  730  root data/Faster_uncor/May15_Faster_uncor_1506.root 
+  731  root data/Faster_uncor/May15_Faster_uncor_1506.root 
+  732  root data/HFEMID_UNCOR_tests/BadTowers_etaLT316.root 
+  733  bash
+  734  cd ~/CMSSW_4_2_7_hfemidVal/src/mywork/HFEMIDZeeAnalyzer/test/note
+  735  cmsenv
+  736  root data/HFEMID_UNCOR_tests/May08_HFEMID_UNCOR_tests_1152.root 
+  737  cd
+  738  wcq
+  739  cd downloads/
+  740  lrt
+  741  rm 1101W FNL P3.xls
+  742  rm 1101W\ FNL\ P3.xls 
+  743  wcq
+  744  lrt
+  745  dh HFEMID_UNCOR_tests_*root
+  746  lrt
+  747  lrt
+  748  dh HFEMID_UNCOR_tests_*root
+  749  lrt
+  750  dh HFEMID_UNCOR_tests_*root
+  751  lrt
+  752  dh HFEMID_UNCOR_tests_*root
+  753  cd log/
+  754  zcat *log*z | 99
+  755  zcat *log*z | grep 99
+  756  zcat *log*z | grep -1
+  757  zcat *log*z | grep \-1
+  758  zcat *log*z | grep '-1'
+  759  zcat *log*z | grep "-1"
+  760  zcat *log*z | grep 0
+  761  cd ..
+  762  lrt
+  763  dh HFEMID_UNCOR_tests_*root
+  764  lrt
+  765  dh HFEMID_UNCOR_tests_*root
+  766  dh HFEMID_UNCOR_tests_*root
+  767  lrt
+  768  lrt
+  769  dh HFEMID_UNCOR_tests_*root
+  770  lrt
+  771  dh HFEMID_UNCOR_tests_*root
+  772  lrt
+  773  lrt
+  774  root HFEMID_UNCOR_tests_189.root
+  775  cd log/
+  776  lrt
+  777  em HFEMID_UNCOR_tests_189.err.gz
+  778  cd ..
+  779  lrt
+  780  dh HFEMID_UNCOR_tests_*root
+  781  lrt
+  782  cp May15_HFEMID_UNCOR_tests_1029.root CleanTowers_etaGT316.root
+  783  lrt May*root
+  784  cp May14_HFEMID_UNCOR_tests_2129.root AllTowers_allEta.root
+  785  lrt
+  786  dh HFEMID_UNCOR_tests_*root
+  787  cp May15_HFEMID_UNCOR_tests_1233.root BadTowers_etaLT316.root
+  788  root HFEMID_UNCOR_tests_001.root 
+  789  cd ../Faster_uncor/
+  790  lrt
+  791  dh Faster_uncor_*root
+  792  dh Faster_uncor_*root
+  793  lrt
+  794  root Faster_uncor_015.root 
+  795  condor_rm 643
+  796  lrt
+  797  em phistar_pdf_comparison.C&
+  798  cd CMSSW_4_2_7_hfemidVal/src/
+  799  sb
+  800  cd mywork/HFEMIDZeeAnalyzer/test/note/
+  801  em note_meanEtaRes.C&
+  802  em ../../src/HFIDGenAnalHistos.cc&
+  803  em ../../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc &
+  804  cd ..
+  805  pd3;sb;pop
+  806  pd3;sb;pop
+  807  cmsenv
+  808  hgrep condor
+  809  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list
+  810  cd note/
+  811  root data/HFEMID_UNCOR_tests/May07_HFEMID_UNCOR_tests_1108.root 
+  812  root data/EtaButchering/May03_EtaButchering_1700.root 
+  813  root data/HFEMID_UNCOR_tests/May07_HFEMID_UNCOR_tests_1108.root 
+  814  root data/HFEMID_UNCOR_tests/May07_HFEMID_UNCOR_tests_1108.root 
+  815  em ../../../../RecoEgamma/EgammaHFProducers/interface/HFClusterAlgo.h&
+  816  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1440.root 
+  817  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1440.root 
+  818  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1440.root 
+  819  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1440.root 
+  820  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1440.root 
+  821  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_1440.root 
+  822  em ../../src/HFIDGenAnalHistos.*&
+  823  cd ..
+  824  pd3;sb;pop
+  825  pd3;sb;pop
+  826  pd3;sb;pop
+  827  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list
+  828  lrt ../src/
+  829  lrt ../../../RecoEgamma/EgammaHFProducers/src/
+  830  cd note/
+  831  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_0959.root 
+  832  em ../../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc &
+  833  cd ..
+  834  lrt
+  835  pd3;sb;pop
+  836  pd3;sb;pop
+  837  cmsRun TestMyEta_cfg.py
+  838  pd3;sb;pop
+  839  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  840  bg
+  841  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_0959.root 
+  842  pd3;sb;pop
+  843  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  844  pd3;sb;pop
+  845  pd3;sb;pop
+  846  pd3;sb;pop
+  847  pd3;sb;pop
+  848  pd3;sb;pop
+  849  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  850  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  851  pd3;sb;pop
+  852  pd3;sb;pop
+  853  pd3;sb;pop
+  854  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  855  pd3;sb;pop
+  856  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  857  pd3;sb;pop
+  858  pd3;sb;pop
+  859  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  860  pd3;sb;pop
+  861  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  862  pd3;sb;pop
+  863  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  864  pd3;sb;pop
+  865  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  866  pd3;sb;pop
+  867  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  868  pd3;sb;pop
+  869  pd3;sb;pop
+  870  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  871  pd3;sb;pop
+  872  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  873  pd3;sb;pop
+  874  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  875  pd3;sb;pop
+  876  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  877  pd3;sb;pop
+  878  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  879  pd3;sb;pop
+  880  hgrep cond
+  881  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list
+  882  root /data/whybee1a/user/klapoetke/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  883  cd note/
+  884  root /data/whybee1a/user/klapoetke/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  885  cd ..
+  886  root testMyEta.root 
+  887  pd3;sb;pop
+  888  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  889  .q
+  890  .q
+  891  root test
+  892  root testMyEta.root 
+  893  pd3;sb;pop
+  894  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  895  pd3;sb;pop
+  896  cmsRun TestMyEta_cfg.py > log.log;em log.log
+  897  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list
+  898  pd3;sb;pop
+  899  pd3;sb;pop
+  900  pd3;sb;pop
+  901  pd3;sb;pop
+  902  pd3;sb;pop
+  903  pd3;sb;pop
+  904  pd3;sb;pop
+  905  pd3;sb;pop
+  906  pd3;sb;pop
+  907  pd3;sb;pop
+  908  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list
+  909  cd note/
+  910  em note_logElVsDeltaEta.C&
+  911  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  912  ffind.sh C std::string&
+  913  ffind.sh C string
+  914  hgrep em
+  915  em ../../src/HFIDGenAnalHistos.cc&
+  916  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  917  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  918  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  919  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  920  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  921  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  922  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1625.root 
+  923  cd ..
+  924  em log.log 
+  925  hgrep HFC
+  926  em ../../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc &
+  927  em ../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc &
+  928  em log.log 
+  929  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1329.root 
+  930  pd3;sb;pop
+  931  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list
+  932  root data/HFEMID_UNCOR_tests/May10_HFEMID_UNCOR_tests_1625.root 
+  933  rcw
+  934  lrt
+  935  cd HFEMID_UNCOR_tests/
+  936  lrt
+  937  dh HFEMID_UNCOR_tests_*root
+  938  lrt
+  939  dh HFEMID_UNCOR_tests_*root
+  940  cq -global
+  941  cq -global
+  942  lrt
+  943  dh HFEMID_UNCOR_tests_*root
+  944  root May14_HFEMID_UNCOR_tests_2129.root 
+  945  cd CMSSW_4_2_7_hfemidVal/src/
+  946  ls
+  947  sb
+  948  em RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc 
+  949  cd mywork/HFEMIDZeeAnalyzer/test/
+  950  lrt
+  951  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  952  cmsenv
+  953  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  954  cd note/
+  955  em note_meanEtaRes.C&
+  956  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_2105.root 
+  957  em note_meanEtaRes.C&
+  958  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_2105.root 
+  959  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_2105.root 
+  960  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_2105.root 
+  961  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_2105.root 
+  962  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_2105.root 
+  963  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_2105.root 
+  964  em ../../../../RecoEgamma/EgammaHFProducers/src/HFClusterAlgo.cc &
+  965  cd ..
+  966  cmsenv
+  967  pd3;sb;pop
+  968  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  969  em ../src/HFIDGenAnalHistos.*[hc]&
+  970  cd note/
+  971  root data/HFEMID_UNCOR_tests/May09_HFEMID_UNCOR_tests_2105.root 
+  972  cq
+  973  condor_rm 44605
+  974  cd ..
+  975  pd3;sb;pop
+  976  pd3;sb;pop
+  977  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  978  pd3;sb;pop
+  979  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  980  condor_rm 44607
+  981  pd3;sb;pop
+  982  condor_filelist.perl --batch 5 HFEMID_UNCOR_tests_cfg.py ~/Feb2021_fullSim_zee.list 
+  983  wcq
+  984  xrandr
+  985  killall firefox
+  986  cd .mozilla/firefox/lvz63kd2.default/
+  987  ls
+  988  rm lock 
+  989  ls -a
+  990  rm .parentlock 
+  991  man vncserver
+  992  xrandr
+  993  xrandr -s 1
+  994  xrandr -s 0
+  995  vncserver -kill :7
+  996  vncserver -geometry 1024x768 :7
+  997  vncserver -kill :7
+  998  vncserver -geometry 1000x600 :7
+  999  vncserver -kill :7
+ 1000  vncserver -geometry 1010x700 :7
+ 1001  cmsenv
+ 1002  cq
+ 1003  cq
+ 1004  root /local/cms/phedex/store/mc/Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/00F71C3D-88A8-E011-AC48-001D0967D0DA.root 
+ 1005  edmDumpEventContent /local/cms/phedex/store/mc/Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/00F71C3D-88A8-E011-AC48-001D0967D0DA.root 
+ 1006  edmDumpEventContent /local/cms/phedex/store/mc/Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/00F71C3D-88A8-E011-AC48-001D0967D0DA.root | grep hf
+ 1007  edmDumpEventContent /local/cms/phedex/store/mc/Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/00F71C3D-88A8-E011-AC48-001D0967D0DA.root | grep HF
+ 1008* edmDumpEventContent /local/cms/phedex/store/mc/Summer11/DYToEE_M-20_CT10_TuneZ2_7TeV-powheg-pythia/GEN-SIM-RECO/PU_S4_START42_V11-v1/0000/00F71C3D-88A8-E011-AC48-001D0967D0DA.root | grep hfcd
+ 1009  cd ..
+ 1010  ffind.sh py Clone
+ 1011  ffind.sh py clone
+ 1012  em python/zshape_effacc_pdf_moo_cfg.py&
+ 1013  cq
+ 1014  cq
+ 1015  hgrep migrate
+ 1016  lrt
+ 1017  cd scripts/
+ 1018  lrt
+ 1019  cd ..
+ 1020  cd python/
+ 1021  lrt
+ 1022  em effacc_makeSmearEvents_cfg.py effacc_FS_smearingon_cfg.py&
+ 1023  ensc FullSimSmearedElectronProducer_cfi.py
+ 1024  hgrep FS
+ 1025  history > hist.txt;em hist.txt&

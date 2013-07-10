@@ -1,0 +1,90 @@
+    b~ (g )  ==>   e-  e+  b~        mult=           1
+    b~  b    ==>   e-  e+            <=== uborn
+  2 5
+   (b~  b )  ==>   e-  e+  g         mult=           1
+    b~  b    ==>   e-  e+            <=== uborn
+  0 5
+    c~ (g )  ==>   e-  e+  c~        mult=           1
+    c~  c    ==>   e-  e+            <=== uborn
+  2 5
+   (c~  c )  ==>   e-  e+  g         mult=           1
+    c~  c    ==>   e-  e+            <=== uborn
+  0 5
+    s~ (g )  ==>   e-  e+  s~        mult=           1
+    s~  s    ==>   e-  e+            <=== uborn
+  2 5
+   (s~  s )  ==>   e-  e+  g         mult=           1
+    s~  s    ==>   e-  e+            <=== uborn
+  0 5
+    u~ (g )  ==>   e-  e+  u~        mult=           1
+    u~  u    ==>   e-  e+            <=== uborn
+  2 5
+   (u~  u )  ==>   e-  e+  g         mult=           1
+    u~  u    ==>   e-  e+            <=== uborn
+  0 5
+    d~ (g )  ==>   e-  e+  d~        mult=           1
+    d~  d    ==>   e-  e+            <=== uborn
+  2 5
+   (d~  d )  ==>   e-  e+  g         mult=           1
+    d~  d    ==>   e-  e+            <=== uborn
+  0 5
+   (g ) b~   ==>   e-  e+  b~        mult=           1
+    b   b~   ==>   e-  e+            <=== uborn
+  1 5
+   (g ) c~   ==>   e-  e+  c~        mult=           1
+    c   c~   ==>   e-  e+            <=== uborn
+  1 5
+   (g ) s~   ==>   e-  e+  s~        mult=           1
+    s   s~   ==>   e-  e+            <=== uborn
+  1 5
+   (g ) u~   ==>   e-  e+  u~        mult=           1
+    u   u~   ==>   e-  e+            <=== uborn
+  1 5
+   (g ) d~   ==>   e-  e+  d~        mult=           1
+    d   d~   ==>   e-  e+            <=== uborn
+  1 5
+   (g ) d    ==>   e-  e+  d         mult=           1
+    d~  d    ==>   e-  e+            <=== uborn
+  1 5
+   (g ) u    ==>   e-  e+  u         mult=           1
+    u~  u    ==>   e-  e+            <=== uborn
+  1 5
+   (g ) s    ==>   e-  e+  s         mult=           1
+    s~  s    ==>   e-  e+            <=== uborn
+  1 5
+   (g ) c    ==>   e-  e+  c         mult=           1
+    c~  c    ==>   e-  e+            <=== uborn
+  1 5
+   (g ) b    ==>   e-  e+  b         mult=           1
+    b~  b    ==>   e-  e+            <=== uborn
+  1 5
+   (d   d~)  ==>   e-  e+  g         mult=           1
+    d   d~   ==>   e-  e+            <=== uborn
+  0 5
+    d  (g )  ==>   e-  e+  d         mult=           1
+    d   d~   ==>   e-  e+            <=== uborn
+  2 5
+   (u   u~)  ==>   e-  e+  g         mult=           1
+    u   u~   ==>   e-  e+            <=== uborn
+  0 5
+    u  (g )  ==>   e-  e+  u         mult=           1
+    u   u~   ==>   e-  e+            <=== uborn
+  2 5
+   (s   s~)  ==>   e-  e+  g         mult=           1
+    s   s~   ==>   e-  e+            <=== uborn
+  0 5
+    s  (g )  ==>   e-  e+  s         mult=           1
+    s   s~   ==>   e-  e+            <=== uborn
+  2 5
+   (c   c~)  ==>   e-  e+  g         mult=           1
+    c   c~   ==>   e-  e+            <=== uborn
+  0 5
+    c  (g )  ==>   e-  e+  c         mult=           1
+    c   c~   ==>   e-  e+            <=== uborn
+  2 5
+   (b   b~)  ==>   e-  e+  g         mult=           1
+    b   b~   ==>   e-  e+            <=== uborn
+  0 5
+    b  (g )  ==>   e-  e+  b         mult=           1
+    b   b~   ==>   e-  e+            <=== uborn
+  2 5

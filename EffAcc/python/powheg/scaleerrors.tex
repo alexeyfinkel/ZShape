@@ -1,0 +1,74 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+
+% Alter some LaTeX defaults for better treatment of figures:
+    % See p.105 of "TeX Unbound" for suggested values.
+    % See pp. 199-200 of Lamport's "LaTeX" book for details.
+    %   General parameters, for ALL pages:
+    \renewcommand{\topfraction}{0.9}	% max fraction of floats at top
+    \renewcommand{\bottomfraction}{0.8}	% max fraction of floats at bottom
+    %   Parameters for TEXT pages (not float pages):
+    \setcounter{topnumber}{2}
+    \setcounter{bottomnumber}{2}
+    \setcounter{totalnumber}{4}     % 2 may work better
+    \setcounter{dbltopnumber}{2}    % for 2-column pages
+    \renewcommand{\dbltopfraction}{0.9}	% fit big float above 2-col. text
+    \renewcommand{\textfraction}{0.07}	% allow minimal text w. figs
+    %   Parameters for FLOAT pages (not text pages):
+    \renewcommand{\floatpagefraction}{0.7}	% require fuller float pages
+	% N.B.: floatpagefraction MUST be less than topfraction !!
+    \renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
+
+	% remember to use [htp] or [htpb] for placement
+
+
+\begin{document}
+
+\title{Powheg Parameter Errors}
+\author{Joe Pastika}
+\maketitle
+
+\begin{figure}[b]
+	\begin{center}
+    \begin{tabular}{ | r | r | r | r | }
+        \hline
+         {\tt muref} & {\tt facscfact} & {\tt renscfact} & {\tt bbscalevar} \\
+        \hline \hline
+		80.000 & 0.5 & 0.5 & 0 \\
+        \hline 
+        \bf{91.188} & \bf{1.0} & \bf{1.0} & 1 \\
+        \hline
+        100.000 & 2.0 & 2.0 & \bf{2} \\
+        \hline
+    \end{tabular}
+    \caption{Parameter values.  The defaults are bold.}
+    \label{fig1}
+    \end{center}
+\end{figure}
+
+In order to determine the error in the Powheg calculations, various parameters were varied to give a sense of the overall variation in the results.  The parameters varied were {\tt muref} (the reference scale), {\tt facscfact} (the factorization scale factor), {\tt renscfact} (the renormalization scale factor) and {\tt bbscalevar} (which controls the method of calculating another scale (maybe bb scale?)).  Powheg was used to generate $10^{6}$ $Z\rightarrow ee$ events with the default settings, but with the variables above varied.  The values used for the variables are shown in figure \ref{fig1}.  The output is then fed into the default CMS Pythia6 hadronizer with the default tune.  Finally, the the $p_{T}$ distribution is extracted using the EffAcc analyzer.  The plots are made at truth level, the MUON-MUON acceptance is used and a mass cut is applied to the invariant mass of $60 GeV < M < 120 GeV$.  The plots are normalized to account for the number of events and the varied bin width.  Figure \ref{p1} shows the change in the $Z_{0}$ $p_{t}$ distribution.  The plots show the ratio of the perturbed value of the plot to the default value.  The variables {\tt muref} and {\tt bbscalevar} have little to no effect from the given variations.  The scale factors {\tt facscfact} and {\tt renscfact} on the other hand give a noticable variation in the $p_{t}$ distribution.  Because of this they have been plotted with 10 million generated events instead of 1 million.  The largest variations from the factorization scale factor are approximately 9\% while those from the renormalization scale are around 3\% for the highest $p_{t}$ (though the errors in this determination are largest here).  
+
+\begin{figure}[t]
+	\begin{center}
+		\includegraphics[scale=.85, angle = 90]{/home/ugrad/pastika/public_html/powheg_compared.pdf}
+		\caption{Change in $Z_{0}$ $p_{t}$ distributions.  The plots are the ratio of the $p_{t}$ with the parameter of interest adjusted to its default value. The plots here are shown for the MUON-MUON acceptance using the PtTL plots.  (The two {\tt muref} plots lie on top each other.)}
+		\label{p1}
+    \end{center}
+\end{figure}
+
+The Pythia hadronizer was also checked to determine its effect.  For this test a single sample of 10 million Powheg events was created with the default settings.  This same sample was then hadronized with Pythia using 5 optimized tunes (D6T, P0, ProQ20, ProPT0, and Z2).  Again the EffAcc analyzer is used to extract the $p_{t}$ distribution.  The results are plotted in figure \ref{p2}.  Given the Powheg as an input the Pythia hadronization model clearly has only a very small effect on the $p_{t}$ distribution.  This also means that the results for variation of the Powheg scale factors should not be highly effected by the choice of Pythia models either.  
+
+\begin{figure}[b]
+	\begin{center}
+		\includegraphics[scale=.65, angle = 90]{/home/ugrad/pastika/public_html/pwg_Pyth_tunescompared.pdf}
+		\caption{$Z_{0}$ $p_{t}$ distributions using the same Powheg output but differnt Pythia tunes.  The data is also plotted with the black dots.}
+		\label{p2}
+    \end{center}
+\end{figure}
+
+\end{document}
+
+
+
+
