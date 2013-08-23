@@ -77,13 +77,14 @@ EndcapSuperClusters = cms.EDProducer("ConcreteEcalCandidateProducer",
 
 EESuperClusters = cms.EDFilter("CandViewSelector",
     src = cms.InputTag("EndcapSuperClusters"	),
-    cut = cms.string('abs( eta ) > 1.566 & abs( eta ) < 3.0 & pt > 20')
+    cut = cms.string('abs( eta ) > 1.566 & pt > 20') # & abs( eta ) < 3.0 
 )
 
 NTSuperClusters = cms.EDFilter("CandViewSelector",
     src = cms.InputTag("EndcapSuperClusters"),
     cut = cms.string('abs( eta ) > 2.5 & abs( eta ) < 3.0 & pt > 10')
 )
+
 allSuperClusters = cms.EDProducer("CandViewMerger",
     src = cms.VInputTag(cms.InputTag("EBSuperClusters"), cms.InputTag("EESuperClusters"),cms.InputTag("theHFSuperClusters"))
 )
@@ -152,7 +153,7 @@ NTElecTight = cms.EDFilter("PhotonSelector",
 
 
 
-sc_sequence = cms.Sequence( ( hfSuperClusterCandidate * theHFSuperClusters + hfRecoEcalCandidateTight) * HybridSuperClusters * EBSuperClusters + EndcapSuperClusters * EESuperClusters * NTSuperClusters * allSuperClusters * theSuperClusters +NTElecLoose + NTElecTight )
+sc_sequence = cms.Sequence( ( hfSuperClusterCandidate * theHFSuperClusters + hfRecoEcalCandidateTight) * HybridSuperClusters * EBSuperClusters + EndcapSuperClusters * EESuperClusters *  allSuperClusters * theSuperClusters + NTSuperClusters + NTElecLoose + NTElecTight )
 
 
 
@@ -522,6 +523,12 @@ tpMapWP80AndNTSuper =  cms.EDProducer("CandViewShallowCloneCombiner",
     checkCharge = cms.bool(False),
 )
 
+tpMapWP80AndEESuper =  cms.EDProducer("CandViewShallowCloneCombiner",
+    decay = cms.string("WorkingPoint80 EESuperClusters"),
+    cut   = cms.string("50 < mass < 160"),
+    checkCharge = cms.bool(False),
+)
+
 tpMapWP90AndSupers =  cms.EDProducer("CandViewShallowCloneCombiner",
     decay = cms.string("WorkingPoint90 allSuperClusters"),
     cut   = cms.string("50 < mass < 160"),
@@ -531,7 +538,7 @@ tpMapWP90AndSupers =  cms.EDProducer("CandViewShallowCloneCombiner",
 
 
 
-tpMap_sequence = cms.Sequence( tpMapSuperClusters + tpMapGsfElectrons + tpMapIsolation + tpMapId + tpMapHFSuperClusters + tpMapGsfAndHF + tpMapWP95AndHF + tpMapWP80AndHF + tpMapWP80AndSupers + tpMapWP90AndSupers + tpMapWP80AndNTSuper)
+tpMap_sequence = cms.Sequence( tpMapSuperClusters + tpMapGsfElectrons + tpMapIsolation + tpMapId + tpMapHFSuperClusters + tpMapGsfAndHF + tpMapWP95AndHF + tpMapWP80AndHF + tpMapWP80AndSupers + tpMapWP90AndSupers + tpMapWP80AndNTSuper + tpMapWP80AndEESuper)
 #tpMap_sequence = cms.Sequence( tpMapGsfElectrons + tpMapIsolation + tpMapId + tpMapHFSuperClusters + tpMapGsfAndHF)
 
 ##    __  __  ____   __  __       _       _               
